@@ -1,0 +1,28 @@
+<ion-view view-title="商品类别">
+  <ion-nav-buttons side="right">
+    <a class="button button-clear button-icon ion-ios-plus-empty" href="#/app/category-add/0/" ></a>
+  </ion-nav-buttons>
+    <ion-content class="stable-bg category-content-left">
+      <ul class="list">
+        <li class="item stable-bg">大类别</li>
+        <li class="item" ng-repeat="category in categories" ng-click="selectCategory($index)">
+          {{category.Name}}
+        </li>
+       </ul>
+    </ion-content>
+  <ion-content  class="light-bg category-content-right">
+    <ul class="list">
+      <li class="item">小类别</li>
+      <li class="item item-icon-right">无小类别进入大分类<i class="icon ion-chevron-right icon-accessory" ng-click="selectCategory(subCategory)"></i></li>
+      <li class="item item-icon-right" ng-repeat="subCategory in activeCategory.Children">
+        {{subCategory.Name}}
+      </li>
+    </ul>
+    <button class="button button-positive button-clear icon-left ion-plus-circled" ng-click="gotoCategoryAdd()">新增小分类</button>
+  </ion-content>
+  <div class="bar bar-footer row-center category-content-right-footer">
+    <span ng-show="activeCategory.Children.length==0">目前无小分类</span>
+    <span ng-if="activeCategory.Children.length>0">共{{activeCategory.Children.length}}种商品类型</span>
+    <button class="button button-icon stable-border button-small ion-android-more-horizontal pull-right" ng-click="showActiveSheet()"></button>
+  </div>
+</ion-view>
