@@ -9815,15 +9815,14 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
-.col-boder {
-  border: 1px solid black; }
-
 .quick-action-item {
   height: 25vw;
   display: flex;
   align-items: center;
-  margin-top: -1px;
-  border: 1px solid #eeeeee; }
+  border: 1px solid black; }
+
+.quick-action-item + .quick-action-item {
+  margin-left: -1px; }
 
 .shortcut {
   height: auto; }
@@ -9832,17 +9831,13 @@ a.button {
   margin-left: 1px; }
 
 .quick-actions + .quick-actions {
-  margin-top: 1px; }
+  margin-top: -1px; }
 
 .income {
   font-size: 18px; }
 
-.yuan {
+.yun {
   font-size: 10px; }
-
-.center-bottom {
-  position: fixed;
-  bottom: 10px; }
 
 .side-background {
   background-color: #333333; }
@@ -9863,3 +9858,27 @@ a.button {
 .category-content-right, .category-content-right-footer {
   width: 60%;
   margin-left: 40%; }
+
+.active-item {
+  background-color: #fff;
+  border-left: 4px solid #FF6A3C; }
+
+.toast-container {
+  position: fixed;
+  bottom: 50px;
+  width: 100%;
+  opacity: 0;
+  -webkit-transition: opacity0 .8s;
+  z-index: 10; }
+  .toast-container.active {
+    opacity: 1; }
+
+.toast-message {
+  width: 270px;
+  margin: 5px auto;
+  padding: 5px;
+  background-color: #444;
+  text-align: center;
+  color: #fff;
+  border-radius: 7px;
+  font-size: 14px; }

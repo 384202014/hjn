@@ -1,4 +1,4 @@
-﻿<ion-side-menus enable-menu-with-back-views="false">
+<ion-side-menus enable-menu-with-back-views="false">
   <ion-side-menu-content>
     <ion-nav-bar class="bar-energized">
       <ion-nav-back-button>
@@ -12,55 +12,39 @@
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
 
+
   <ion-side-menu side="left">
-    <!--<ion-header-bar class="bar-">-->
-      <!--<h1 class="title">Left</h1>-->
-    <!--</ion-header-bar>-->
     <ion-content class="side-background">
-      <div class="row ">
-        <div class="col col-66 ">
-          <h4 class="calm">微信</h4>
-          <h5 class="calm">12424545</h5>
+      <div class="row">
+        <div class="col col-66">
+          <h5 style="color: #eeeeee">海哥</h5>
+          <h6 style="color: #eeeeee">电话：110120119122</h6>
         </div>
-        <div class="col col-33 col-center text-right">
-          <span class="energized-bg light">&nbsp;VIP&nbsp;</span>
+        <div class="col col-33 col-center text-right" >
+          <span class="energized-bg light">&nbsp;皇者VIP&nbsp;</span>
         </div>
       </div>
       <ul class="list side-menu">
-        <li class="item item-icon-left item-icon-right"menu-close>
-          <i class="ion-briefcase"></i>
-          资金帐户
+        <li class="item item-icon-left item-icon-right" menu-close>
+          <i class="icon ion-model-s"></i>
+          开车
           <i class="icon ion-chevron-right icon-accessory"></i>
         </li>
-        <li class="item item-icon-left item-icon-right"menu-close>
-          <i class="ion-easel"></i>
-          手机橱窗
+        <li class="item item-icon-left item-icon-right" menu-close>
+          <i class="icon ion-ios-football"></i>
+          足球
           <i class="icon ion-chevron-right icon-accessory"></i>
         </li>
-        <li class="item item-icon-left item-icon-right"menu-close>
-          <i class="ion-share"></i>
-          邀请有礼
+        <li class="item item-icon-left item-icon-right" menu-close>
+          <i class="icon ion-android-mail"></i>
+          邮件
           <i class="icon ion-chevron-right icon-accessory"></i>
         </li>
-        <li class="item item-icon-left item-icon-right"menu-close>
-          <i class="ion-chatboxes"></i>
-          开店论坛
-          <i class="icon ion-chevron-right icon-accessory"></i>
-        </li>
-        <li class="item item-icon-left item-icon-right"menu-close>
-          <i class="ion-email-unread"></i>
-          反馈建议
-          <i class="icon ion-chevron-right icon-accessory"></i>
-        </li>
-        <li class="item item-icon-left item-icon-right"menu-close>
-          <i class="ion-compose"></i>
-          帮助中心
-          <i class="icon ion-chevron-right icon-accessory"></i>
-        </li>
+
       </ul>
     </ion-content>
     <div style="position: fixed; bottom: 10px; left: 10px; z-index: 100;">
-      <a class="button button-dark botton-clear icon-left ion-android-settings " href="">&nbsp;&nbsp;设置</a>
+      <a class="button button-light button-clear icon-left ion-android-settings menu-close" ui-sref="app.setting">&nbsp;&nbsp;设置</a>
     </div>
   </ion-side-menu>
 </ion-side-menus>

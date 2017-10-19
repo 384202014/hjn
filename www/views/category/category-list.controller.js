@@ -1,97 +1,167 @@
 (function () {
-  'use striet';
-  angular.module('starter.controllers').controller('CategoryListCtrl',['$scope','$ionicActionSheet',function ($scope,$ionicActionSheet) {
-   $scope.categories=[
-     {
-       ID:1,
-       Name:'电脑整机',
-       Children:[
-         {
-           ID:11,
-           Name:'笔记本'
-         },
-         {
-           ID:12,
-           Name:'台式机'
-         },
-         {
-           ID:13,
-           Name:'平板电脑'
-         }
-       ]
-     },
-     {
-       ID:2,
-       Name:'电脑配件',
-       Children:[
-         {
-           ID:21,
-           Name:'CPU'
-         },
-         {
-           ID:22,
-           Name:'电源'
-         },
-         {
-           ID:23,
-           Name:'显卡'
-         }
-       ]
-     },
-     {
-       ID:3,
-       Name:'平板电脑',
-       Children:[
-         {
-           ID:31,
-           Name:'显示器'
-         },
-         {
-           ID:32,
-           Name:'适配器'
-         },
-         {
-           ID:33,
-           Name:'xxx'
-         }
-       ]
-     }
-
-   ];
-    $scope.activeCategory={};
-    if ($scope.categories.length>0){
-      $scope.activeCategory=$scope.categories[0];
-    }
-    $scope.selectCategory=function (index) {
-      if ($scope.activeCategory.ID != $scope.categories[index].ID) {
-        $scope.activeCategory = $scope.categories[index];
-      }
-    };
-    $scope.showActiveSheet=function () {
-      $ionicActionSheet.show({
-        buttons:[
-          {
-            text:'<b>新增小分类</b>'
-          },
-          {
-            text:'编辑分类'
-          }
-        ],
-        cancelText:'取消',
-        buttonClicked:function(index){
-          switch (index){
-            case 0:
-                  $scope.gotoCategoryAdd();
-                  break;
-            case 1:
-                  break;
-          }
-        },
-        titleText:'更多操作'
+  'use strict'
+  angular.module('starter.controllers')
+    .controller('CategoryListCtrl',['$scope','$ionicActionSheet','$ionicHistory','CategoryService','productService','popupService', function ($scope,$ionicActionSheet,$ionicHistory,CategoryService,productService,popupService) {
+      $scope.$on('$stateChangeSuccess',function (event,toState,toParams,fromState,fromParams) {
+        $scope.showInfo='无小分类进入大分类';
+        if(fromState.name=='app.product-list'){
+          $scope.showInfo='全部商品';
+        }
       });
-    };
-    $scope.gotoCategoryAdd=function () {
-      location.href='#/app/category-add/'+$scope.activeCategory.ID+'/'+$scope.activeCategory.Name;
+      $scope.categories = [
+        {
+          ID: 1,
+          Name: '早餐',
+          Children: [
+            {
+              ID: 11,
+              Name: '豆浆',
+              Children: []
+            },
+            {
+              ID: 12,
+              Name: '馒头',
+              Children: []
+            },
+            {
+              ID: 13,
+              Name: '包子',
+              Children: []
+            },
+            {
+              ID: 14,
+              Name: '面线糊',
+              Children: []
+            }
+          ]
+        },
+        {
+          ID: 2,
+          Name: '午餐',
+          Children: [
+            {
+              ID: 21,
+              Name: '牛肉',
+              Children: []
+            },
+            {
+              ID: 22,
+              Name: '猪肉',
+              Children: []
+            },
+            {
+              ID: 23,
+              Name: '鸭肉',
+              Children: []
+            },
+            {
+              ID: 24,
+              Name: '鸡肉',
+              Children: []
+            }
+          ]
+        },
+        {
+          ID: 3,
+          Name: '晚餐',
+          Children: [
+            {
+              ID: 31,
+              Name: '茶叶蛋',
+              Children: []
+            },
+            {
+              ID: 32,
+              Name: '鱼肉',
+              Children: []
+            },
+            {
+              ID: 33,
+              Name: '排骨',
+              Children: []
+            },
+            {
+              ID: 34,
+              Name: '腊汁肉',
+              Children: []
+            }
+          ]
+        },
+        {
+          ID: 4,
+          Name: '饮料',
+          Children: [
+            {
+              ID: 41,
+              Name: '可乐',
+              Children: []
+            },
+            {
+              ID: 42,
+              Name: '奶茶',
+              Children: []
+            },
+            {
+              ID: 43,
+              Name: '苹果汁',
+              Children: []
+            },
+            {
+              ID: 44,
+              Name: '芒果汁',
+              Children: []
+            }
+          ]
+        },
+      ];
+      $scope.activeCategory = {};
+      $scope.activeSubCategory = {};
+      if ($scope.categories.length > 0) {
+        $scope.activeCategory = $scope.categories[0];
+      }
+      $scope.seleCategory = function (index) {
+        if ($scope.activeCategory.ID != $scope.categories[index].ID) {
+          $scope.activeCategory = $scope.categories[index];
+        }
+      };
+      $scope.selectSubCategory = function (data) {
+        console.log(data);
+        $scope.activeSubCategory = data;
+        $ionicHistory.goBack();
+      };
+      $scope.showActionSheet = function () {
+        $ionicActionSheet.show({
+          buttons:[
+            {
+              text:'<b>新增小分类</b>'
+            },
+            {
+              text:'编辑分类'
+            }
+          ],
+         cancelText:'取消',
+          buttonClicked:function (index) {
+            switch(index){
+              case 0:
+                    $scope.gotoCategoryAdd();
+                    break;
+              case 1:
+
+                    break;
+            }
+          },
+          titleText:'更多操作'
+        });
+      };
+      $scope.gotoCategoryAdd=function () {
+        location.href='#/app/category-add/' +$scope.activeCategory.ID + '/' +$scope.activeCategory.Name;
+      }
+      $scope.$watch('activeSubCategory',function (newValue,oldValue) {
+        if(newValue.ID){
+          CategoryService.updateCategory($scope.activeSubCategory);
+        }
+      })
     }
-  }]);
+    ]);
 })();
+

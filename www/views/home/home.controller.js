@@ -1,15 +1,12 @@
 /**
- * Created by T on 2017/9/20.
+ * Created by Administrator on 2017/9/19.
  */
 (function () {
-  'use striet';
+  'use strict'
   angular.module('starter.controllers')
-    .controller('HomeCtrl',['$scope','localStorageService', '$state',function($scope,localStorageService,$state) {
-      $scope.$on('$ionieview','beforeEnter',function () {
-        var user = localStorageService.get('user');
-        if (user.isLogin===false)[
-          $state.go('login')
-        ]
-      });
-    }])
+    .controller('HomeCtrl',['$scope', function ($scope) {
+      
+      
+    }
+      ])
 })();

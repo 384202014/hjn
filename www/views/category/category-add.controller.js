@@ -1,36 +1,30 @@
 (function () {
   'use strict';
   angular.module('starter.controllers')
-    .controller('CategoryAddCtrl',['$scope','$stateParams',function ($scope,$stateParams) {
-      $scope.title='新增大分类';
-      $scope.category={
-        ID:0,
-        Name:'',
-        Children:[
+    .controller('CategoryAddCtrl',['$scope','$stateParams', function ($scope,$stateParams) {
+      $scope.title = '新增大分类';
+      $scope.category = {
+        ID: 0,
+        Name: '',
+        Children: [
           {
-            ID:0,
-            Name:''
+            ID: 0,
+            Name: ''
           }
         ]
       };
-      $scope.$on('$ionicView.enter',function () {
-        $scope.category.ID=$stateParams.id;
-        $scope.category.Name=$stateParams.name;
-        if($stateParams.id!=0){
-          $scope.title='新增小分类'
+      $scope.$on('$ionicView.enter', function () {
+        $scope.category.Name = $stateParams.name;
+        if ($stateParams.id != 0) {
+          $scope.title = '新增小分类';
         }
       });
-      $scope.addSubCategory=function () {
+      $scope.addSubCategory = function () {
         $scope.category.Children.push({
-          ID:0,
-          Name:''
+          ID: 0,
+          Name: ''
         });
-
-      }
-      $scope.add=function () {
-
-      }
-    }])
-
-
-})()
+      };
+    }
+    ]);
+})();

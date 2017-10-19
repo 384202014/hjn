@@ -4,30 +4,31 @@
 (function () {
   'use striet';
   angular.module('starter.controllers')
-    .controller('LoginCtrl', ['$scope', '$ionicPopup', 'localStorageService', '$state',function ($scope, $ionicPopup, localStorageService,$state) {
-      var USER_KEY = 'user';
-      $scope.user = {
-        username: '',
-        password: ''
+    .controller('LoginCtrl' ,['$scope','localStorageService','$ionicPopup','$state',function ($scope,localStorageService,$ionicPopup,$state) {
+      var USER_KEY='User';
+      $scope.user={
+        username:'',
+        password:''
       };
-      $scope.login = function () {
-        var account = localStorageService.get(USER_KEY, {
-          username: '123456',
-          password: '123'
+      $scope.login=function () {
+        var account = localStorageService.get(USER_KEY,{
+          username:'hjn',
+          password:'123123'
         });
-        if (account.username === $scope.user.username && account.password === $scope.user.password) {
-          account.isLogin = true;
-          localStorageService.update(USER_KEY, account);
-          $state.go('app.home');
+        if(account.username===$scope.user.username && account.password===$scope.user.password){
+         account.isLogin=true;
+          localStorageService.update(USER_KEY,account);
+          $state.go('app.Home')
         }
         else {
-          $ionicPopup.alert({
-            title: '警告',
-            template: '用户名或密码错误',
-            okText: '确定',
-            okType: 'energized-bg'
+         $ionicPopup.alert({
+            title:'警告',
+            template:'用户名错误或者密码不正确',
+            okText:'确定',
+          okType:'button-energized'
           });
         }
       };
     }]);
 })();
+
